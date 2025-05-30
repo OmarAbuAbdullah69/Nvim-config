@@ -44,9 +44,14 @@ require("lazy").setup({
 	},
 	{ "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
 	{ "diegoulloao/neofusion.nvim", priority = 1000 , config = true, opts = ... },
-	
+
 	-- syntax
-	{"nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate"},
+	{
+  	"nvim-treesitter/nvim-treesitter",
+  	event = { "BufReadPost", "BufNewFile" },
+  	build = ":TSUpdate",
+	},
+
 	{
     "kylechui/nvim-surround",
     version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
@@ -114,20 +119,20 @@ require("lazy").setup({
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     config = true
-    -- use opts = {} for passing setup options
-    -- this is equivalent to setup({}) function
 	},
 	-- auto completion
-	"hrsh7th/nvim-cmp",
-  "hrsh7th/cmp-buffer",
-  "hrsh7th/cmp-path",
-	"saadparwaiz1/cmp_luasnip",
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-nvim-lua",
-
-	-- Snippets
-  "L3MON4D3/LuaSnip",
-  "rafamadriz/friendly-snippets",
+	{
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		dependencies = {
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp",
+			"saadparwaiz1/cmp_luasnip",
+			"L3MON4D3/LuaSnip",
+			"rafamadriz/friendly-snippets",
+		},
+	},
 
 	-- LSP
 	"neovim/nvim-lspconfig",
@@ -157,13 +162,50 @@ require("lazy").setup({
       )
     end,
   },
+  "gooord/alpha-nvim",
+	"lewis6991/gitsigns.nvim",
 	{
-    'goolord/alpha-nvim',
-    config = function ()
-        require'alpha'.setup(require'alpha.themes.dashboard'.config)
+		"pteroctopus/faster.nvim",
+		config = function ()
+			require("faster").setup()
+		end
+	},
+	{
+		"ggandor/leap.nvim",
+		dependencies = {"tpope/vim-repeat"},
+		config = function()
+			require("leap").set_default_mappings()
+		end
+	},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {},
+	},
+	{
+    "mcauley-penney/tidy.nvim",
+    opts = {
+        enabled_on_save = false,
+        filetype_exclude = { "markdown", "diff" }
+    },
+    init = function()
+        vim.keymap.set('n', "<leader>tt", require("tidy").toggle, {})
+        vim.keymap.set('n', "<leader>tr", require("tidy").run, {})
     end
 	},
-	"lewis6991/gitsigns.nvim",
+	{
+    'numToStr/Comment.nvim',
+    opts = {}
+	},
+	"nat-418/boole.nvim",
+	"hinell/move.nvim",
+	{
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
+	},
 	-- automatically check for plugin updates
 	checker = { enabled = true },
 })
