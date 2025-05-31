@@ -49,7 +49,7 @@ vim.keymap.set('n', '<A-S-Left>'  ,':MoveWord -1<CR>', opts)
 vim.keymap.set('n', '<A-S-Right>' ,':MoveWord 1<CR>', opts)
 
 -- exploerer
-keymap("n", "<leader>e", ":Neotree toggle<CR>", opts)
+keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 --telescopr
 keymap("n", "<leader>ff", ":Telescope fd<CR>", opts)

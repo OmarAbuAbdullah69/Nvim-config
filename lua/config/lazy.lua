@@ -66,22 +66,16 @@ require("lazy").setup({
 
 	--file expolerer
 	{
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v3.x",
+		"nvim-tree/nvim-tree.lua",
+		version = "*",
+		lazy = false,
 		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-			"MunifTanjim/nui.nvim",
-			-- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
+			"nvim-tree/nvim-web-devicons",
 		},
-		lazy = false, -- neo-tree will lazily load itself
-		---@module "neo-tree"
-		---@type neotree.Config?
-		opts = {
-			-- fill any relevant options here
-		},
+		config = function()
+			require("nvim-tree").setup {}
+		end,
 	},
-
 	--telescope
 	{
 		'nvim-telescope/telescope.nvim', tag = '0.1.8',
