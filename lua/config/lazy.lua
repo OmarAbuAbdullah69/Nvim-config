@@ -156,7 +156,7 @@ require("lazy").setup({
       )
     end,
   },
-  "gooord/alpha-nvim",
+  "goolord/alpha-nvim",
 	"lewis6991/gitsigns.nvim",
 	{
 		"pteroctopus/faster.nvim",
