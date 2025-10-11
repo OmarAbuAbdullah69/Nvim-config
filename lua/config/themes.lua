@@ -6,6 +6,8 @@ if index == 3 then
 	vim.opt.background="dark"
 end
 
+local ode = require("config.ode")
+
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. selected)
 if not status_ok then
   return

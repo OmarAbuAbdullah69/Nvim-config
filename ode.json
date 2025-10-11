@@ -1,0 +1,37 @@
+{
+	"filetree":{
+		"sort":{
+			"items_first":"folders"
+		},
+		"view":{
+			"width":30,
+			"side":"right",
+			"centralize_selection":true,
+			"cursorline":true
+		},
+		"modified":{
+			"enable":true,
+			"show_ondir":true
+		},
+		"filters":{
+			"enable":true,
+			"dotfiles":true
+		},
+		"diagnostics":{
+			"enable":true,
+			"show_ondir":true
+		},
+		"renderer":{
+			"group_empty":false,
+			"icons":{
+				"file":true,
+				"folder":true,
+				"folder_arrow":true,
+				"git":true
+			}
+		},
+		"actions":{
+			"close_on_fileopen":true
+		}
+	}
+}
