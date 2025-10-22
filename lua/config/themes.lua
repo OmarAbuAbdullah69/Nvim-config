@@ -1,4 +1,10 @@
-local themes = {"monokai-pro", "wich-dark", "oxocarbon", "sonokai", "tokyonight-night", "nightfly", "material-deep-ocean", "neofusion"}
+local themesList = require("config.ode").get("themes")
+local themes = {}
+
+for _, i in pairs(themesList.selected) do 
+	themes[#themes+1] = i
+end
+
 local index = math.random(#themes)
 local selected = themes[index]
 

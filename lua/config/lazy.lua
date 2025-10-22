@@ -1,49 +1,4 @@
--- Bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
-end
-vim.opt.rtp:prepend(lazypath)
-
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
--- Setup lazy.nvim
-require("lazy").setup({
-
-	-- themes
-	"loctvl842/monokai-pro.nvim",
-	{
-	    "sontungexpt/witch",
-	    priority = 1000,
-	    lazy = false,
-	    config = function(_, opts)
-	        require("witch").setup(opts)
-	    end,
-	},
-	"nyoom-engineering/oxocarbon.nvim",
-	"sainnhe/sonokai",
-	{
-  		"folke/tokyonight.nvim",
-  		lazy = false,
-  		priority = 1000,
-  		opts = {},
-	},
-	{ "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
-	{ "diegoulloao/neofusion.nvim", priority = 1000 , config = true, opts = ... },
+local plugins = {
 
 	-- syntax
 	{
@@ -187,11 +142,10 @@ require("lazy").setup({
         vim.keymap.set('n', "<leader>tr", require("tidy").run, {})
     end
 	},
-	{
-    'numToStr/Comment.nvim',
-    opts = {}
-	},
+  "numToStr/Comment.nvim",
+
 	"nat-418/boole.nvim",
+
 	"hinell/move.nvim",
 	{
     "lukas-reineke/indent-blankline.nvim",
@@ -202,4 +156,38 @@ require("lazy").setup({
 	},
 	-- automatically check for plugin updates
 	checker = { enabled = true },
-})
+}
+
+
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+
+
+local themes = require("config.ode").get("themes")
+for k, v in pairs(themes.available) do
+	plugins[#plugins+1] = v
+end
+
+-- Setup lazy.nvim
+require("lazy").setup(plugins)
