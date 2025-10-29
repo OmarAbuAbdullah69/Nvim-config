@@ -1,3 +1,4 @@
+require("config.extra.conform")
 require("config.extra.autopairs")
 require("config.extra.bars_lines")
 require("config.extra.blank_indent")

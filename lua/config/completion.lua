@@ -40,14 +40,6 @@ cmp.setup({
       -- Set the icon for the completion kind
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind] or vim_item.kind)
 
-      -- -- Optional: add source name as menu
-      -- vim_item.menu = ({
-      --   buffer = "[BUF]",
-      --   nvim_lsp = "[LSP]",
-      --   luasnip = "[SNIP]",
-      --   path = "[PATH]",
-      -- })[entry.source.name]
-
       return vim_item
     end,
   },
@@ -58,7 +50,7 @@ cmp.setup({
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    [props.select] = cmp.mapping.confirm({ select = true }),  -- confirm suggestion
+    [props.select] = cmp.mapping.confirm({ select = false }),  -- confirm suggestion
     [props.abort] = cmp.mapping.abort(),
     [props.complete] = cmp.mapping.complete(),  -- trigger completion manually
 		[props.next] = cmp.mapping.select_next_item(),
@@ -67,7 +59,7 @@ cmp.setup({
 
   sources = cmp.config.sources({
     { name = "nvim_lsp" },   -- from LSP
-    { name = "luasnip" },   -- from LSP
+    { name = "luasnip" },   -- Lua snippets
     { name = "buffer" },     -- from current file text
     { name = "path" },       -- file paths
   }),

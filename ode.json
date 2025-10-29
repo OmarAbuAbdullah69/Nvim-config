@@ -1,7 +1,28 @@
 {
+	"langs":{
+		"c": {
+			"highlight":true,
+			"completion":true,
+			"server":"clangd",
+			"formater":"clang-format"
+		},
+		"cpp": {
+			"highlight":true,
+			"completion":true,
+			"server":"clangd",
+			"formater":"clang-format"
+		},
+		"lua": {
+			"highlight":true,
+			"completion":true,
+			"server":"lua_ls",
+			"formater":"stylua"
+		}
+	},
 	"completion":{
+		"enable":true,
 		"select":"<CR>",
-		"abort":"q",
+		"abort":"<C>",
 		"complete":"<C-Space>",
 		"next":"<Tab>",
 		"prev":"<S-Tab>"
@@ -92,7 +113,8 @@
 				"<leader>ff":":Telescope fd<CR>",
 				"<leader>f":":Telescope<CR>",
 				"<leader>b+":":Boole increment<CR>",
-				"<leader>b-":":Boole decrement<CR>"
+				"<leader>b-":":Boole decrement<CR>",
+				"<leader>bf":":lua require('conform').format()<CR>"
 			},
 			"i":{
 

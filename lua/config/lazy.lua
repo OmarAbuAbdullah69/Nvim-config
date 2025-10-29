@@ -1,4 +1,4 @@
-local plugins = {
+		local plugins = {
 
 	-- syntax
 	{
@@ -90,6 +90,11 @@ local plugins = {
 	"jose-elias-alvarez/null-ls.nvim",
 
 	-- other
+	-- for formatting
+	{
+	  "stevearc/conform.nvim",
+  	opts = {},
+	},
 	{ -- color picker
 		"uga-rosa/ccc.nvim",
 		config = function()
