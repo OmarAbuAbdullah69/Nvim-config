@@ -12,9 +12,8 @@ keymap("", keymaps.leader, "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-for m, s in pairs(keymaps.modes) do 
-	for k, v in pairs(s) do 
+for m, s in pairs(keymaps.modes) do
+	for k, v in pairs(s) do
 		keymap(m, k, v, ops)
 	end
 end
-
