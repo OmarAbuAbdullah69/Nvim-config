@@ -60,10 +60,18 @@ cmp.setup({
 		ghost_text = props.ghost_text,
 	},
 	mapping = cmp.mapping.preset.insert({
+		["<Down>"] = cmp.mapping(function(fallback)
+			cmp.close()
+			fallback()
+		end, { "i" }),
+		["<Up>"] = cmp.mapping(function(fallback)
+			cmp.close()
+			fallback()
+		end, { "i" }),
 		[props.select] = cmp.mapping.confirm({ select = false }), -- confirm suggestion
 		[props.abort] = cmp.mapping.abort(),
 		[props.complete] = cmp.mapping.complete(), -- trigger completion manually
-		[props.next] = cmp.mapping.select_next_item( select_behavior ),
+		[props.next] = cmp.mapping.select_next_item(select_behavior),
 		[props.prev] = cmp.mapping.select_prev_item(select_behavior),
 	}),
 

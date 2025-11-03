@@ -35,7 +35,7 @@
   },
   "completion": {
     "enable": true,
-		"ghost_text":true,
+		"ghost_text":false,
     "select": "<CR>",
     "abort": "<C>",
     "complete": "<C-Space>",
@@ -46,23 +46,15 @@
   "themes": {
     "available": {
       "monokai-pro": "loctvl842/monokai-pro.nvim",
-      "wich-dark": "sontungexpt/witch",
-      "oxocarbon": "nyoom-engineering/oxocarbon.nvim",
-      "sonokai": "sainnhe/sonokai",
       "tokyonight-night": "folke/tokyonight.nvim",
-      "nightfly": "bluz71/vim-nightfly-colors",
-      "material-deep-ocean": "marko-cerovac/material.nvim",
-      "neofusion": "diegoulloao/neofusion.nvim"
+			"catppuccin":"catppuccin/nvim",
+			"dracula":"Mofiqul/dracula.nvim"
     },
     "selected": [
       "monokai-pro",
-      "wich-dark",
-      "oxocarbon",
-      "sonokai",
       "tokyonight-night",
-      "nightfly",
-      "material-deep-ocean",
-      "neofusion"
+			"catppuccin",
+			"dracula"
     ]
   },
   "options": {
