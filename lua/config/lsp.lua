@@ -6,8 +6,10 @@ for _, v in pairs(langs) do
 	end
 end
 
-local virtual_text_active = true
-local vtl = {
+local diagnostics = require("config.ode").get("diagnostics")
+
+local virtual_text_active = diagnostics.virtual_text.enabled
+local vtl = { --this variable contains the actual setup for virtual text
 	-- show inline text annotations
 	prefix = "●", -- could be "●", "■", "▎", "●", "▶", or ""
 	spacing = 2, -- space between text and diagnostic message
@@ -32,27 +34,24 @@ function ToggleDiagnostics()
 	end
 end
 
-vim.api.nvim_set_keymap("n", "<leader>dt", ":lua ToggleDiagnostics()<CR>", { noremap = true, silent = true })
+local keymaps = require("config.ode").get("keymaps")
+vim.api.nvim_set_keymap("n", keymaps.diagnostic.toggle, ":lua ToggleDiagnostics()<CR>", { noremap = true, silent = true })
+
+local vts = vtl --this vatiable holds the value for the virtual text on startup
+if not diagnostics.virtual_text.enabled then
+	vts = false
+end
 
 vim.diagnostic.config({
 	-- === General diagnostic behavior ===
 	underline = {
-		-- whether to underline diagnostic text
-		-- can also be a table like { severity = vim.diagnostic.severity.ERROR }
-		-- to only underline certain severities
-		severity = { min = vim.diagnostic.severity.HINT },
-	},
+	-- whether to underline diagnostic text
+	-- can also be a table like { severity = vim.diagnostic.severity.ERROR }
+	-- to only underline certain severities
+	severity = { min = vim.diagnostic.severity.HINT },
+},
 
-	virtual_text = {
-		-- show inline text annotations
-		prefix = "●", -- could be "●", "■", "▎", "●", "▶", or ""
-		spacing = 2, -- space between text and diagnostic message
-		source = "if_many", -- "always", "if_many", or false
-		severity = nil, -- filter severity { min = vim.diagnostic.severity.WARN }
-		format = function(diagnostic)
-			return string.format("[%s] %s", diagnostic.source, diagnostic.message)
-		end,
-	},
+	virtual_text = vts,
 
 	signs = {
 		-- show icons in the sign column
@@ -86,7 +85,7 @@ vim.diagnostic.config({
 		end,
 	},
 
---[[ 	-- === Virtual lines (newer Neovim feature) ===
+	--[[ 	-- === Virtual lines (newer Neovim feature) ===
 	virtual_lines = {
 		highlight_whole_line = false,
 		only_current_line = false,
@@ -104,3 +103,29 @@ vim.diagnostic.config({
 	-- You could add a custom handler for signs if needed:
 	-- signs = { priority = 10 },
 })
+
+--# key maps
+vim.keymap.set('n', keymaps.diagnostic.goto_prev, '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+vim.keymap.set('n', keymaps.diagnostic.goto_next, '<cmd>lua vim.diagnostic.goto_next()<cr>')
+vim.keymap.set('n', keymaps.diagnostic.open_float, '<cmd>lua vim.diagnostic.open_float()<cr>')
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(event)
+    local bufmap = function(mode, rhs, lhs)
+      vim.keymap.set(mode, rhs, lhs, {buffer = event.buf})
+    end
+
+    bufmap('n', keymaps.lsp.hover, '<cmd>lua vim.lsp.buf.hover()<cr>')
+    bufmap('n', keymaps.lsp.rename, '<cmd>lua vim.lsp.buf.rename()<cr>')
+    bufmap('n', keymaps.lsp.references, '<cmd>lua vim.lsp.buf.references()<cr>')
+    bufmap('n', keymaps.lsp.definition, '<cmd>lua vim.lsp.buf.definition()<cr>')
+    bufmap('n', keymaps.lsp.code_action, '<cmd>lua vim.lsp.buf.code_action()<cr>')
+    bufmap('n', keymaps.lsp.declaration, '<cmd>lua vim.lsp.buf.declaration()<cr>')
+    bufmap('n', keymaps.lsp.implementation, '<cmd>lua vim.lsp.buf.implementation()<cr>')
+    bufmap('n', keymaps.lsp.document_symbol, '<cmd>lua vim.lsp.buf.document_symbol()<cr>')
+    bufmap('n', keymaps.lsp.type_definition, '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+    bufmap({'i', 's'}, keymaps.lsp.signature_help, '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+  end,
+})
+--# key maps
+

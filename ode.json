@@ -1,4 +1,12 @@
 {
+  "diagnostics": {
+    "virtual_text": {
+      "enabled": true
+    },
+    "underline": {
+      "enabled": true
+    }
+  },
   "langs": {
     "json": {
       "highlight": true,
@@ -35,11 +43,11 @@
   },
   "completion": {
     "enable": true,
-		"ghost_text":false,
+    "ghost_text": false,
     "select": "<CR>",
     "abort": "<C>",
     "complete": "<C-Space>",
-		"select_behavior":"select",
+    "select_behavior": "select",
     "next": "<Tab>",
     "prev": "<S-Tab>"
   },
@@ -47,14 +55,14 @@
     "available": {
       "monokai-pro": "loctvl842/monokai-pro.nvim",
       "tokyonight-night": "folke/tokyonight.nvim",
-			"catppuccin":"catppuccin/nvim",
-			"dracula":"Mofiqul/dracula.nvim"
+      "catppuccin": "catppuccin/nvim",
+      "dracula": "Mofiqul/dracula.nvim"
     },
     "selected": [
       "monokai-pro",
       "tokyonight-night",
-			"catppuccin",
-			"dracula"
+      "catppuccin",
+      "dracula"
     ]
   },
   "options": {
@@ -99,6 +107,24 @@
   },
   "keymaps": {
     "leader": "<Space>",
+    "lsp": {
+      "hover": "K",
+      "rename": "grn",
+      "references": "grr",
+      "definition": "gd",
+      "code_action": "gra",
+      "declaration": "grd",
+      "implementation": "gri",
+      "document_symbol": "g0",
+      "type_definition": "grt",
+      "signature_help": "<C-s>"
+    },
+    "diagnostic": {
+      "toggle": "<leader>dt",
+      "goto_prev": "[d",
+      "goto_next": "]d",
+      "open_float": "<C-w>d"
+    },
     "modes": {
       "n": {
         "<leader>q": ":q<CR>",

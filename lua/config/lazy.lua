@@ -93,6 +93,12 @@ local plugins = {
 	"jose-elias-alvarez/null-ls.nvim",
 
 	-- other
+	-- folding
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = { "kevinhwang91/promise-async" },
+	},
+
 	-- for formatting
 	{
 		"stevearc/conform.nvim",
