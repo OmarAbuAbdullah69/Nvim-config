@@ -3,9 +3,10 @@ if not status_ok then
 	return
 end
 
+local mappping = require("config.ode").get("keymaps").terminal.mapping
 toggleterm.setup({
 	size = 20,
-	open_mapping = [[<leader>/]],
+	open_mapping = mappping,
 	hide_numbers = true,
 	shade_filetypes = {},
 	shade_terminals = true,

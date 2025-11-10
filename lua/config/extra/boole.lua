@@ -1,7 +1,8 @@
+local keymaps = require("config.ode").get("keymaps").boole
 require("boole").setup({
 	mappings = {
-		increment = "<C-a>",
-		decrement = "<C-x>",
+		increment = keymaps.increment,
+		decrement = keymaps.decrement,
 	},
 	-- User defined loops
 	additions = {

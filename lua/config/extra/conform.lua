@@ -1,6 +1,6 @@
 local langs = require("config.ode").get("langs")
-local formatters = {}
 
+local formatters = {}
 for k, v in pairs(langs) do
 	formatters[k] = v.formatter
 end

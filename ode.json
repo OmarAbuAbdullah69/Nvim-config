@@ -109,51 +109,75 @@
     "leader": "<Space>",
     "lsp": {
       "hover": "K",
-      "rename": "grn",
-      "references": "grr",
-      "definition": "gd",
-      "code_action": "gra",
-      "declaration": "grd",
-      "implementation": "gri",
-      "document_symbol": "g0",
-      "type_definition": "grt",
-      "signature_help": "<C-s>"
+      "code_action": "<leader>a",
+      "definition": "<leader>d",
+      "rename": "<leader>r",
+      "type_definition": "<leader>t",
+      "references": "<leader>R",
+      "declaration": "<leader>D",
+      "implementation": "<leader>i",
+      "document_symbol": "<leader>s",
+      "signature_help": "<C-k>"
     },
     "diagnostic": {
+      "goto_prev": "[g",
+      "goto_next": "]g",
       "toggle": "<leader>dt",
-      "goto_prev": "[d",
-      "goto_next": "]d",
-      "open_float": "<C-w>d"
+      "open_float": "<leader>e"
+    },
+    "autopairs": {
+      "fast_wrap": "<A-e>"
+    },
+    "boole": {
+      "increment": "<C-a>",
+      "decrement": "<C-x>"
+    },
+    "commenter": {
+      "toggler": {
+        "line": "gc",
+        "block": "gb"
+      },
+      "opleader": {
+        "line": "gc",
+        "block": "gb"
+      },
+      "extra": {
+        "above": "gcO",
+        "below": "gco",
+        "eol": "gcA"
+      }
+    },
+    "terminal": {
+      "mapping": "<leader>t"
     },
     "modes": {
       "n": {
         "<leader>q": ":q<CR>",
         "<leader>w": ":w<CR>",
         "<leader>wq": ":wq<CR>",
-        "<leader>bj": ":BufferNext<CR>",
-        "<leader>bh": ":BufferPrevious<CR>",
+        "<leader>Q": ":qa!<CR>",
+        "<leader>bn": ":BufferNext<CR>",
+        "<leader>bp": ":BufferPrevious<CR>",
         "<leader>bc": ":BufferClose<CR>",
-        "dp": "d$",
         "<C-h>": "<C-w>h",
         "<C-j>": "<C-w>j",
         "<C-k>": "<C-w>k",
         "<C-l>": "<C-w>l",
-        "<C-Up>": ":resize -2<CR>",
-        "<C-Down>": ":resize +2<CR>",
-        "<C-Left>": ":vertical resize -2<CR>",
+        "dp": "d$",
         "<A-Up>": ":MoveLine -1<CR>",
         "<A-Down>": ":MoveLine 1<CR>",
         "<A-S-Left>": ":MoveWord -1<CR>",
         "<A-S-Right>": ":MoveWord 1<CR>",
-        "<C-Right>": ":vertical resize +2<CR>",
         "<leader>e": ":NvimTreeToggle<CR>",
-        "<leader>ff": ":Telescope fd<CR>",
-        "<leader>f": ":Telescope<CR>",
-        "<leader>v+": ":Boole increment<CR>",
-        "<leader>v-": ":Boole decrement<CR>",
-        "<leader>bf": ":lua require('conform').format()<CR>"
+        "<leader>=": ":lua require('conform').format()<CR>",
+        "<leader>ff": ":Telescope find_files<CR>",
+        "<leader>fg": ":Telescope live_grep<CR>",
+        "<leader>fb": ":Telescope buffers<CR>",
+        "<leader>fh": ":Telescope help_tags<CR>"
       },
-      "i": {},
+      "i": {
+        "jk": "<ESC>"
+      },
       "v": {
         "<": "<gv^",
         ">": ">gv^",
@@ -182,7 +206,7 @@
     },
     "filters": {
       "enable": true,
-      "dotfiles": true
+      "dotfiles": false
     },
     "diagnostics": {
       "enable": true,

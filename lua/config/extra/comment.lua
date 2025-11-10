@@ -1,3 +1,4 @@
+local keymaps = require("config.ode").get("keymaps").commenter
 require("Comment").setup({
 	---Add a space b/w comment and the line
 	padding = true,
@@ -8,25 +9,25 @@ require("Comment").setup({
 	---LHS of toggle mappings in NORMAL mode
 	toggler = {
 		---Line-comment toggle keymap
-		line = "gcc",
+		line = keymaps.toggler.line,
 		---Block-comment toggle keymap
-		block = "gbc",
+		block = keymaps.toggler.block,
 	},
 	---LHS of operator-pending mappings in NORMAL and VISUAL mode
 	opleader = {
 		---Line-comment keymap
-		line = "gc",
+		line = keymaps.opleader.line,
 		---Block-comment keymap
-		block = "gb",
+		block = keymaps.opleader.block,
 	},
 	---LHS of extra mappings
 	extra = {
 		---Add comment on the line above
-		above = "gcO",
+		above = keymaps.extra.above,
 		---Add comment on the line below
-		below = "gco",
+		below = keymaps.extra.below,
 		---Add comment at the end of line
-		eol = "gcA",
+		eol = keymaps.extra.eol,
 	},
 	---Enable keybindings
 	---NOTE: If given `false` then the plugin won't create any mappings
