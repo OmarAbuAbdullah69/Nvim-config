@@ -16,6 +16,14 @@
         "json_repair"
       ]
     },
+		"go": {
+			"highlight": true,
+			"completion": true,
+			"server": "gopls",
+			"formatter": [
+				"golines"
+			]
+		},
     "c": {
       "highlight": true,
       "completion": true,
@@ -109,14 +117,14 @@
     "leader": "<Space>",
     "lsp": {
       "hover": "K",
-      "code_action": "<leader>a",
-      "definition": "<leader>d",
-      "rename": "<leader>r",
-      "type_definition": "<leader>t",
-      "references": "<leader>R",
-      "declaration": "<leader>D",
-      "implementation": "<leader>i",
-      "document_symbol": "<leader>s",
+      "code_action": "<leader>ga",
+      "definition": "<leader>gd",
+      "rename": "<leader>gr",
+      "type_definition": "<leader>gt",
+      "references": "<leader>gR",
+      "declaration": "<leader>gD",
+      "implementation": "<leader>gi",
+      "document_symbol": "<leader>gs",
       "signature_help": "<C-k>"
     },
     "diagnostic": {
