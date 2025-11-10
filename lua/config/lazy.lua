@@ -3,25 +3,19 @@ local plugins = {
 	-- syntax
 	{
 		"nvim-treesitter/nvim-treesitter",
+		commit = "42fc28ba918343ebfd5565147a42a26580579482",
 		event = { "BufReadPost", "BufNewFile" },
 		build = ":TSUpdate",
 	},
-
 	{
-		"kylechui/nvim-surround",
-		version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
-		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({
-				-- Configuration here, or leave empty to use defaults
-			})
-		end,
+		"m-demare/hlargs.nvim",
+		commit = "0b29317c944fb1f76503ce4540d6dceffbb5ccd2",
 	},
-	"m-demare/hlargs.nvim",
-
+	{ "lewis6991/gitsigns.nvim", commit = "20ad4419564d6e22b189f6738116b38871082332" },
 	--file expolerer
 	{
 		"nvim-tree/nvim-tree.lua",
+		commit = "68c67adfabfd1ce923839570507ef2e81ab8a408",
 		version = "*",
 		lazy = false,
 		dependencies = {
@@ -34,47 +28,48 @@ local plugins = {
 	--telescope
 	{
 		"nvim-telescope/telescope.nvim",
+		commit = "f9e5ae3d115aa640f987b5de4af7a17358c3c5ea",
 		tag = "0.1.8",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	{
 		"fdschmidt93/telescope-egrepify.nvim",
+		commit = "5e6fb91f52a595a0dd554c7eea022c467ff80d86",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 	},
-	"desdic/agrolens.nvim",
+
+	{ "desdic/agrolens.nvim", commit = "a2086c25c9e8fe80e07e3298f21fe2118fe9639b" },
 
 	-- tabs and lines
 	{
 		"nvim-lualine/lualine.nvim",
+		commit = "3946f0122255bc377d14a59b27b609fb3ab25768",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
 		"romgrk/barbar.nvim",
+		commit = "fb4369940a07dda35fa4d7f54cf4a36aa00440e6",
 		dependencies = {
 			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
 			"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
 		},
 		init = function()
-			vim.g.barbar_auto_setup = false
+			vim.g.barbar_auto_setup = true
 		end,
-		opts = {
-			-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-			-- animation = true,
-			-- insert_at_start = true,
-			-- …etc.
-		},
 		version = "^1.0.0", -- optional: only update when a new 1.x version is released
 	},
 
 	-- fast coding
 	{
 		"windwp/nvim-autopairs",
+		commit = "7a2c97cccd60abc559344042fefb1d5a85b3e33b",
 		event = "InsertEnter",
 		config = true,
 	},
 	-- auto completion
 	{
 		"hrsh7th/nvim-cmp",
+		commit = "106c4bcc053a5da783bf4a9d907b6f22485c2ea0",
 		event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-buffer",
@@ -87,22 +82,34 @@ local plugins = {
 	},
 
 	-- LSP
-	"neovim/nvim-lspconfig",
-	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim",
-	"jose-elias-alvarez/null-ls.nvim",
+	{ "neovim/nvim-lspconfig", commit = "2010fc6ec03e2da552b4886fceb2f7bc0fc2e9c0" },
+	{ "jose-elias-alvarez/null-ls.nvim", commit = "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7" },
 
 	-- other
+	-- cool pairs manipulation
+	{
+		"kylechui/nvim-surround",
+		commit = "fcfa7e02323d57bfacc3a141f8a74498e1522064",
+		version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end,
+	},
 	-- folding
 	{
 		"kevinhwang91/nvim-ufo",
+		commit = "72d54c31079d38d8dfc5456131b1d0fb5c0264b0",
 		dependencies = { "kevinhwang91/promise-async" },
 	},
-	{"luukvbaal/statuscol.nvim"},
+	--	{ "luukvbaal/statuscol.nvim"},
 
 	-- for formatting
 	{
 		"stevearc/conform.nvim",
+		commit = "cde4da5c1083d3527776fee69536107d98dae6c9",
 		opts = {},
 	},
 	{ -- color picker
@@ -111,9 +118,11 @@ local plugins = {
 			require("ccc").setup({})
 		end,
 	},
-	{ "akinsho/toggleterm.nvim", version = "*", config = true },
+	{ "akinsho/toggleterm.nvim", commit = "9a88eae817ef395952e08650b3283726786fb5fb", version = "*", config = true },
 	{
 		"goolord/alpha-nvim",
+
+		commit = "3979b01cb05734331c7873049001d3f2bb8477f4",
 		-- dependencies = { 'echasnovski/mini.icons' },
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
@@ -124,16 +133,16 @@ local plugins = {
 			require("alpha").setup(startify.config)
 		end,
 	},
-	"goolord/alpha-nvim",
-	"lewis6991/gitsigns.nvim",
 	{
 		"pteroctopus/faster.nvim",
+
 		config = function()
 			require("faster").setup()
 		end,
 	},
 	{
 		"ggandor/leap.nvim",
+		commit = "614481baedb1c11df1d88338005b3e8c15349dcf",
 		dependencies = { "tpope/vim-repeat" },
 		config = function()
 			require("leap").set_default_mappings()
@@ -141,17 +150,18 @@ local plugins = {
 	},
 	{
 		"folke/which-key.nvim",
+		commit = "3aab2147e74890957785941f0c1ad87d0a44c15a",
 		event = "VeryLazy",
 		opts = {},
 	},
-	
-	"numToStr/Comment.nvim",
 
-	"nat-418/boole.nvim",
+	{ "numToStr/Comment.nvim", commit = "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
 
-	"hinell/move.nvim",
+	{ "nat-418/boole.nvim", commit = "7b4a3dae28e3b2497747aa840439e9493cabdc49" },
+
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		commit = "005b56001b2cb30bfa61b7986bc50657816ba4ba",
 		main = "ibl",
 		---@module "ibl"
 		---@type ibl.config
